@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{%extends "master.html" %}
+{%block title%}Ninja Gold{%endblock%}
+
+{%block content%}
+<body>
+    <div class="jumbotron text-center" >
+        <h1>NINJA GOLD GAME</h1>
+        <form class="form-inline my-2 my-lg-0">
+            <p>Your Gold:</p>
+            <input class="form-control mr-sm-2" type="search" placeholder="{{session['total_gold']}}" aria-label="Search">
+        </form>
+    </div>
+
+    <div class="places" style="display: inline-block; border: 2px solid black;">
+        {%for key in GOLD.keys() %}
+            {% set image_path = 'img/'+key+'.jpeg'%}
+            <div class="card" style="width: 18rem; display: inline-block; border: 2px solid black;">
+                <img src="{{url_for('static', filename=image_path)}}" class="card-img-top" alt="{{key}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{key|capitalize}}</h5>
+                    <form action="/process_money" method="post">
+                        <input type="hidden" name="building" value="{{key}}">
+                        <button type='submit' class="btn btn-primary">Find Gold!</button>
+                    </form>
+                </div>
+            </div>
+            
+        {%endfor%}
+    </div>
+
+    <!-- <div class="overflow-auto mx-5" style="height: 150px;border:1px solid gray;border-radius: 4px;">
+        {% for logitem in action %}
+            {% if logitem['gold_change'] > 0 %}
+                {% set gain_loss = 'earned' %}
+                {% set gold_gained = logitem['gold_change'] %}
+                {% set text_color  = 'green' %}
+            {% else %}
+                {% set gain_loss = 'lost' %}
+                {% set gold_gained = -logitem['gold_change'] %}
+                {% set text_color = 'red' %}
+            {% endif %}
+            <h5 id="{{logitem['time_visited']}}">{{logitem['time_visited']}}</h5>
+            <p style="color: {{text_color}}">You {{gain_loss}} {{gold_gained}} gold at the {{logitem['activity']}} </p>
+        {% endfor %}
+    </div> -->
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+{%endblock%}
