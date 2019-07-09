@@ -1,0 +1,36 @@
+host = 'localpost', -- pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'localpost' ([Errno 8] nodename nor servname provided, or not known)")
+# user = 'root', # change the user and password as needed -- pymysql.err.OperationalError: (1045, "Access denied for user 'elizabethbalaji'@'localhost' (using password: NO)")
+# password = 'root', 
+
+deleted db = db -- (terminal) Something went wrong (1046, 'No database selected')
+False
+
+charset = 'utg8mb4' instead of 'utf8mb4'--- AttributeError: 'NoneType' object has no attribute 'encoding'
+
+AttributeError: 'MySQLConnection' object has no attribute 'connection' --- self.connection = deleted 'connection' from here
+
+(terminal)Something went wrong name 'qury' is not defined --- mispelled query
+False
+
+(terminal) Something went wrong execute() missing 1 required positional argument: 'query' --- executable = cursor.execute() removed query and data arguments
+False
+
+NameError: name 'pymysql' is not defined --- # import pymysql.cursors 
+
+TypeError: __init__() takes 1 positional argument but 2 were given----  def __init__(self): removed db as second argument
+
+Running Query: SELECT * FROM friends;
+Something went wrong execute() first
+False ----- # executable = cursor.execute(query, data)
+
+elif query.lower().find("selet") >= 0: 
+
+NameError: name 'connection' is not defined ---- removed connection from connection = pymysql.connect(host = 'localhost',
+
+Traceback (most recent call last):
+  File "server_mysql.py", line 2, in <module>
+    from mysqlconnection import connectToMySQL    # import the function that will return an instance of a connection
+  File "/Users/elizabethbalaji/Desktop/Python_stack/flask/flask_mysql/first_flask_mysql/mysqlconnection.py", line 43
+    
+    ^
+SyntaxError: unexpected EOF while parsing ------- removed return MySQLConnection(db) from def connectToMySQL(db):
