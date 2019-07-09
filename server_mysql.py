@@ -8,7 +8,7 @@ def index():
     mysql = connectToMySQL('pets_db')
     all_animals = mysql.query_db('SELECT * from animals ;')
     mysql = connectToMySQL('pets_db')
-    all_pets = mysql.query_db('SELECT * FROM pets JOIN animals ON pets.animal_id = animals.id ;')
+    all_pets = mysql.query_db('SELECT pet_id, name, common_name FROM pets JOIN animals ON pets.animal_id = animals.id ;')
     return render_template("index.html", all_animals=all_animals, all_pets=all_pets)
 
 @app.route("/add_pet", methods=["POST"])
