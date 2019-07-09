@@ -1,17 +1,32 @@
-<!DOCTYPE html>
+{% extends "master.html" %}
 
-<h1>Index Page</h1>
-<h3>Create a User</h3>
-    <form action='/users' method='post'>
-    Name: <input type='text' name='name'>
-    Email: <input type='text' name='email_address'>
-    <input type='submit' value='Create User'>
-</form>
+{% block title %}
+Pets
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h3>Add your pets</h3>
+        <form action="/add_pet" method="POST">
+            <div class="form-group">
+            <label>Pet name</label>
+            <input name="pet_name" type="text" class="form-control" placeholder="Enter pet name">
+            <small id="emailHelp" class="form-text text-muted">This is the name you call your pet</small>
+            </div>
+            <div class="form-group">
+                <label>Type of pet</label>
+                <select name="pet_type" class="form-control">
+                    {% for animal in all_animals %}
+                        <option value="{{animal['animal_id']}}">{{animal['common_name']}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        </form>
+    </div>
+
+    <div class="container">
+    </div>
+{% endblock %}
 
 
-
-<!-- All input info from user appears on the same page if below html is added
-    <h1>Show Page</h1>
-<h3>Info Submitted:</h3>
-    <p>Name: {{ name_on_template }}</p>
-    <p>Email: {{ email_on_template }}</p> -->
